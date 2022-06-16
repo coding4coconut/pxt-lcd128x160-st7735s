@@ -6,22 +6,22 @@
 Dieses PXT-Paket funktioniert als LCD-Display Treiber für LCD-Displays basierend auf dem ST7735-Chipsatz.
 Ich verwende dazu das LCD-Display "1.8inch LCD Module" von waveshare. Wichtige Eckdaten des Displays:
    * Interface: SPI
-   * LCD type: TFT
+   * LCD type: Farb-TFT (RBG-Farbschema)
    * Controller: ST7735S
    * Resolution: 128 x 160 (Pixel)
 
 Diese Erweiterung basiert auf einer microbit-Erweiterung von joy-it - https://github.com/joy-it/pxt-RB-TFT1.8  
 Diese microbit-Erweiterung läuft jedoch nicht auf dem Calliope mini.
-Es wurden daher die Treiberanpassungen für das Target Callipe mini vorgenommen.
-U.a. wurden die PINs für die SPI-Signale sowie für CS (Chipselect) und DC (Command/Data-Line) angepasst sowie die Initialisierung des Chipsatzes angepasst.
-Weiterhin wurden Funktion für die Festlung eines Display-Offsets vorgenommen sowie das Farbschema korrigiert.
+Es wurden daher die Treiberanpassungen für den Callipe mini vorgenommen und eine neue PXT-Erweiterung erstellt.
+U.a. wurden das PIN-Setting für die SPI-Signale sowie für CS (Chipselect) und DC (Command/Data-Line) angepasst, sowie die Initialisierung des Chipsatzes angepasst.
+Weiterhin wurden Funktionen für die Festlegung eines Display-Offsets und der Display-Größe erstellt und das Farbschema korrigiert.
 
-Der calliope kommunziert über das SPI-Interface mit dem LCD-Display.
+Der Calliope kommuniziert über ein SPI-Interface mit dem LCD-Display.
 Jedoch kommt es bei der Verwendung der SPI-Schnittstelle mit dem Calliope zu Problemen.
-Insbesondere dann, wenn die SPI-Signalleitung auf Pins liegen, welche auch von der 5x5-LED-Matrix benutzt werden.
-Selbst das Ausschalten der LED-Matrix führte zu keiner einwandfreien SPI-Kommunikation.
+Insbesondere dann, wenn die SPI-Signalleitungen auf Pins liegen, welche auch von der 5x5-LED-Matrix benutzt werden.
+Selbst das Ausschalten der 5x5-LED-Matrix führte zu keiner einwandfreien SPI-Kommunikation.
 
-Um einen einwandfreier Betrieb der SPI-Schnittstelle zusammen mit dem LDC-Display zu ermöglichen, war es notwendig, folgende SPI-Belegung vorzunehmen:
+Um dennoch einen einwandfreien Betrieb der SPI-Schnittstelle zusammen mit dem LDC-Display zu ermöglichen, war es notwendig, folgende SPI-Belegung vorzunehmen:
 
 *  SCK -> Pin P0 (SPI SCK)
 *  SDA -> Pin P3 (SPI MOSI)  
@@ -29,16 +29,16 @@ Um einen einwandfreier Betrieb der SPI-Schnittstelle zusammen mit dem LDC-Displa
 *  DC  -> Pin P1 (Data/Command Signalleitung)
 *  SPI MISO -> belibig (da diese pxt-Paket keine Data-Read-Funktion des Displays benutzt)
 
-Für einen einwandfreien Betrieb ist es daher notwendig, die SPI-PINs in makecode im Start-Block zu initialisieren (vor der ersten Verwendung eines Blocks aus dieser PXT-Erweiterung).
+Für einen einwandfreien Betrieb ist es daher unbedingt notwendig, die SPI-PINs in makecode im Start-Block zu initialisieren (vor der ersten Verwendung eines Blocks aus dieser PXT-Erweiterung).
 Hier ein Beispiel:
 
 
 ![PXT-Init-SPI-Signallines](https://user-images.githubusercontent.com/91993589/174061301-2d2bacc9-7f0c-4daf-8586-45e0fc8e6a90.png)
 
 
-## Connection
+## Schnittstelle Display-Calliope
 
-The display needs to be connected with seven pins to the Calliope mini:
+Bei dem 1.8' LCD-Display von waveshare erfolgt die Schnittstellenbelegung wie folgt:
 
 | LCD Modul     | Calliope     |
 | ------------- |:------------:|
