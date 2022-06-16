@@ -1,9 +1,9 @@
 
-///This package brings along function to handle a LCD-Display with a ST7735 Chip along with the calliope mini. 
+/// This package brings along function to handle a LCD-Display with a ST7735 Chip along with the calliope mini. 
 // Please pay special attention to the usage ot the SPI-interface in the Readme-file.
-//The core of this LCD-Dirver results from original code from https://github.com/joy-it/pxt-RB-TFT1.8
-//Thanks to joy-it for the great work! MIT License Copyright (c) 2021 Joy-IT powered by SIMAC Electronics GmbH
-
+// The core of this LCD-Dirver results from original code from https://github.com/joy-it/pxt-RB-TFT1.8
+// Thanks to joy-it for the great work! MIT License Copyright (c) 2021 Joy-IT powered by SIMAC Electronics GmbH
+// MIT License Copyright (c) 2022 Franz Stolz
 /**
  * Colors
  */

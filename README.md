@@ -120,7 +120,7 @@ You can also show text on the display. The font size can be set in 5 different z
 
 ```typescript
 // Show white text with black background
-RBTFT18.showString("I am your RB-TFT1.8!", 10, 10, 1, Color.White, Color.Black)
+RBTFT18.showString("Hello User!", 10, 10, 1, Color.White, Color.Black)
 ```
 
 ## Clear screen
@@ -178,8 +178,8 @@ MIT License
 See License-file
 
 The core of this LCD-Dirver results from original code from https://github.com/joy-it/pxt-RB-TFT1.8  
-Thanks to joy-it for the great work! 
 MIT License  Copyright (c) 2021 Joy-IT powered by SIMAC Electronics GmbH
+Thanks to joy-it for the great work! 
 
 MIT License Copyright (c) 2022 Franz Stolz
 
