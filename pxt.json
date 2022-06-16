@@ -1,6 +1,6 @@
 {
     "name": "pxt-lcd128x160-st7735s",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "",
     "dependencies": {
         "core": "*",
