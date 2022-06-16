@@ -350,6 +350,8 @@ namespace RBTFT18 {
     //% x.min=1 x.max=128
     //% y.min=1 y.max=160
      //% zoom.min=1 zoom.max=5 zoom.defl=1
+     //% color.defl=Color.Green
+     //% bgColor.defl=Color.Black
     export function showString(text: string, x: number, y: number, zoom: number, color: Color, bgColor: Color): void {
         let hiColor = (color >> 8) % 256
         let loColor = color % 256

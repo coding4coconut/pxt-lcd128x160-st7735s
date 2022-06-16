@@ -1,4 +1,3 @@
-
 basic.forever(function () {
 	
 })
