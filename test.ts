@@ -35,6 +35,10 @@ input.onButtonPressed(Button.B, function () {
     Color.Blue
     )
 })
+
+*/
+
+
 pins.spiPins(DigitalPin.P3, DigitalPin.C16, DigitalPin.P0)
 RBTFT18.init()
 RBTFT18.clearScreen()
@@ -49,7 +53,7 @@ Color.Black
 basic.showIcon(IconNames.Happy)
 music.playTone(392, music.beat(BeatFraction.Half))
 
-*/
+
 
 basic.forever(function () {
 	
