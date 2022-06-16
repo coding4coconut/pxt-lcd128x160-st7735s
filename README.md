@@ -183,6 +183,12 @@ MIT License  Copyright (c) 2021 Joy-IT powered by SIMAC Electronics GmbH
 
 MIT License Copyright (c) 2022 Franz Stolz
 
+## Laufzeitumgebung zur Erstellung dieser Erweiterung
+Diese Erweiterung wurde mit folgenden Versionen des MakeCode-Editors und Laufzeitumgebung erstellt und getestet:
+*makecode.calliope.cc Version:  4.0.25
+*Microsoft MakeCode Version:  7.0.16
+*Laufzeitumgebung calliope Version:  v2.2.0-rc6-calliope.rc3-iss0.3
+
 ## Als Erweiterung verwenden
 
 Dieses Repository kann als **Erweiterung** in MakeCode hinzugefügt werden.
