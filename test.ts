@@ -1,5 +1,5 @@
 // Hier kann man Tests durchführen; diese Datei wird nicht kompiliert, wenn dieses Paket als Erweiterung verwendet wird.
-
+/*
 input.onButtonPressed(Button.A, function () {
     RBTFT18.drawCircle(
     60,
@@ -48,6 +48,9 @@ Color.Black
 )
 basic.showIcon(IconNames.Happy)
 music.playTone(392, music.beat(BeatFraction.Half))
+
+*/
+
 basic.forever(function () {
 	
 })
