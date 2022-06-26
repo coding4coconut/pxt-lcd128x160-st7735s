@@ -51,7 +51,7 @@ Color.Orange,
 Color.Black
 )
 basic.showIcon(IconNames.Happy)
-music.playTone(392, music.beat(BeatFraction.Half))
+//music.playTone(392, music.beat(BeatFraction.Half))
 
 
 

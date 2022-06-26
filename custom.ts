@@ -4,6 +4,15 @@
 // The core of this LCD-Dirver results from original code from https://github.com/joy-it/pxt-RB-TFT1.8
 // Thanks to joy-it for the great work! MIT License Copyright (c) 2021 Joy-IT powered by SIMAC Electronics GmbH
 // MIT License Copyright (c) 2022 Franz Stolz
+
+/**
+ * Color Scheme of Display
+ */
+enum ColorScheme {
+    RBG = 0xC0,  
+    BGR = 0xC8
+}
+
 /**
  * Colors
  */
@@ -57,7 +66,8 @@ namespace RBTFT18 {
     // width could vary between 128 and 132 - depending on the used LCD-Display (waveshare 1.8 LCD-Module: 130 pixel)
     // width could vary between 160 and 162 - depending on the used LCD-Display (waveshare 1.8 LCD-Module: 160 pixel)
     let TFTWIDTH = 130
-    let TFTHEIGHT = 160
+    let TFTHEIGHT = 162
+
     let PxlOffsetX = 0
     let PxlOffsetY = 0
 
@@ -70,6 +80,7 @@ namespace RBTFT18 {
         SLPOUT = 0x11,
         NORON = 0x13,
         INVOFF = 0x20,
+        INVON = 0x21,
         DISPOFF = 0x28,
         DISPON = 0x29,
         CASET = 0x2A,
@@ -145,7 +156,7 @@ namespace RBTFT18 {
      */
     function setWindow(x0: number, y0: number, x1: number, y1: number): void {
         send(TFTCommands.CASET, [0x00, (x0 + PxlOffsetX), 0x00, (x1 + PxlOffsetX)])
-        send(TFTCommands.RASET, [0x00, (y0 + PxlOffsetX), 0x00, (y1 + PxlOffsetX)])
+        send(TFTCommands.RASET, [0x00, (y0 + PxlOffsetY), 0x00, (y1 + PxlOffsetY)])
     }
 
     /*
@@ -168,6 +179,38 @@ namespace RBTFT18 {
         pins.digitalWritePin(DigitalPin.P2, 1) // de-elect the TFT as SPI target
         pins.digitalWritePin(DigitalPin.P1, 0) // command/data = command
     }
+
+
+    /*
+     * Activate Display Inversion
+     */
+    //% block="set Display Inversion Mode %tftMode"
+    //% tftMode.shadow="toggleOnOff"
+    //% weight=18
+    //   INVOFF = 0x20,
+    //   INVON = 0x21,
+    export function setDisplayInverseMode( tftMode : boolean): void {
+        // set display either to normal display mode or inverse display mode
+        // Disable inversion
+        if (tftMode){
+            send(TFTCommands.INVOFF, []);
+        }
+        else {
+            send(TFTCommands.INVON, []);
+        }
+    }
+    
+    /*
+     * Set color scheme
+     */
+    //% block="Set RBG color scheme of TFT-Display: %cScheme"
+    //% weight=18
+    export function setColorScheme( cScheme : ColorScheme): void {
+        // adjustment of color ordering -> RGB vs BGR
+        // RBG-> 0xC0  BGR -> 0xC8
+        send(TFTCommands.MADCTL, [cScheme]);
+    }
+
 
     /*
      * Initial TFT setup
@@ -207,9 +250,15 @@ namespace RBTFT18 {
         send(TFTCommands.COLMOD, [0x05])
 
         // Column address set -> 0x7F entspricht 128x160pixel
+        send(TFTCommands.CASET, [0x00, 0x00+PxlOffsetX, 0x00, TFTWIDTH +PxlOffsetX])
+        // Row address set
+        send(TFTCommands.RASET, [0x00, 0x00+PxlOffsetY, 0x00, TFTHEIGHT+PxlOffsetY])
+        
+        /* // Column address set -> 0x7F entspricht 128x160pixel
         send(TFTCommands.CASET, [0x00, 0x00, 0x00, 0x7F])
         // Row address set
         send(TFTCommands.RASET, [0x00, 0x00, 0x00, 0x9F])
+        */
 
         // Set Gamma
         send(TFTCommands.GMCTRP1, [0x02, 0x1C, 0x07, 0x12, 0x37, 0x32, 0x29, 0x2D, 0x29, 0x25, 0x2B, 0x39, 0x00, 0x01, 0x03, 0x10])
@@ -260,10 +309,10 @@ namespace RBTFT18 {
      * Draw a straight line from one point to another
      */
     //% block="Draw line from x0:%x0|y0:%y0 to x1:%x1|y:%y1 with color:%color"
-    //% x0.min=1 x0.max=128
-    //% y0.min=1 y0.max=160
-    //% x1.min=1 x1.max=128
-    //% y1.min=1 y1.max=160
+    //% x0.min=1 x0.max=132
+    //% y0.min=1 y0.max=162
+    //% x1.min=1 x1.max=132
+    //% y1.min=1 y1.max=162
     //% weight=85
     export function drawLine(x0: number, y0: number, x1: number, y1: number, color: Color): void {
         let xDelta = x1 - x0

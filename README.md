@@ -10,6 +10,9 @@ Ich verwende dazu das LCD-Display "1.8inch LCD Module" von waveshare. Wichtige E
    * Controller: ST7735S
    * Resolution: 128 x 160 (Pixel)
 
+Details zum Display:
+https://www.waveshare.com/wiki/1.8inch_LCD_Module#Underlying_hardware_interface_2
+
 Diese Erweiterung basiert auf einer microbit-Erweiterung von joy-it - https://github.com/joy-it/pxt-RB-TFT1.8  
 Diese microbit-Erweiterung läuft jedoch nicht auf dem Calliope mini.
 Es wurden daher die Treiberanpassungen für den Callipe mini vorgenommen und eine neue PXT-Erweiterung erstellt.
@@ -29,12 +32,15 @@ Um dennoch einen einwandfreien Betrieb der SPI-Schnittstelle zusammen mit dem LD
 *  DC  -> Pin P1 (Data/Command Signalleitung)
 *  SPI MISO -> belibig (da diese pxt-Paket keine Data-Read-Funktion des Displays benutzt)
 
+## W I C H T I G !
 Für einen einwandfreien Betrieb ist es daher unbedingt notwendig, die SPI-PINs in makecode im Start-Block zu initialisieren (vor der ersten Verwendung eines Blocks aus dieser PXT-Erweiterung).
 Hier ein Beispiel:
 
 
 ![PXT-Init-SPI-Signallines](https://user-images.githubusercontent.com/91993589/174061301-2d2bacc9-7f0c-4daf-8586-45e0fc8e6a90.png)
 
+Nutzen sie dazu aus der Block-Kategorie "Pins" -> "mehr"  den Block "SPI Pins einstellen".
+Dieser Block muss ausgeführt werden, bevor das Display initialisiert wird, da ansonsten der Calliope mit dem Display nicht kommunizieren kann. 
 
 ## Schnittstelle Display-Calliope
 
@@ -165,23 +171,25 @@ The offset is statet as number of pixels
 // Set Pixel Offset
 RBTFT18.setDisplayOffset(0, 0)
 ```
+## Set normal or inverse display mode
+The display facilitates to invert the color of all pixels 
+In order to invert the color of all pixels set the paramenter to "AN" (or "ON")
+In order to set the scheme back to normal set the parameter to "Aus" or ("off").
 
+```typescript
+// activate or deactivate the inverse mode of the display
+RBTFT18.setDisplayInverseMode(ON)
+```
 
-#### Metadaten (verwendet für Suche, Rendering)
+## Adjust the color scheme
+The ST7735 chip ist able to adjust two color schemes, which meand color ordering - either RGB or BGR
+In case your display shows a blue color instead of a red color, you should make use of this block an change the color sheme to BGR
 
-* for PXT/calliopemini
-<script src="https://makecode.com/gh-pages-embed.js"></script><script>makeCodeRender("{{ site.makecode.home_url }}", "{{ site.github.owner_name }}/{{ site.github.repository_name }}");</script>
+```typescript
+// adjust the color ordering of the display to RBG
+RBTFT18.setColorScheme(RBG)
+```
 
-## License
-MIT License
-
-See License-file
-
-The core of this LCD-Dirver results from original code from https://github.com/joy-it/pxt-RB-TFT1.8  
-MIT License  Copyright (c) 2021 Joy-IT powered by SIMAC Electronics GmbH
-Thanks to joy-it for the great work! 
-
-MIT License Copyright (c) 2022 Franz Stolz
 
 ## Laufzeitumgebung zur Erstellung dieser Erweiterung
 Diese Erweiterung wurde mit folgenden Versionen des MakeCode-Editors und Laufzeitumgebung erstellt und getestet:
@@ -197,6 +205,25 @@ Dieses Repository kann als **Erweiterung** in MakeCode hinzugefügt werden.
 * klicke auf **Neues Projekt**
 * klicke auf **Erweiterungen** unter dem Zahnrad-Menü
 * nach **https://github.com/coding4coconut/pxt-lcd-st7735-128x160_1v0** suchen und importieren
+
+
+
+#### Metadaten (verwendet für Suche, Rendering)
+
+* for PXT/calliopemini LCD 1.8 128x160 TFT waveshare 1.8inch LCD Module
+<script src="https://makecode.com/gh-pages-embed.js"></script><script>makeCodeRender("{{ site.makecode.home_url }}", "{{ site.github.owner_name }}/{{ site.github.repository_name }}");</script>
+
+## License
+MIT License
+
+See License-file
+
+The core of this LCD-Dirver results from original code from https://github.com/joy-it/pxt-RB-TFT1.8  
+MIT License  Copyright (c) 2021 Joy-IT powered by SIMAC Electronics GmbH
+Thanks to joy-it for the great work! 
+
+MIT License Copyright (c) 2022 Franz Stolz
+
 
 ## Dieses Projekt bearbeiten ![Build Status Abzeichen](https://github.com/coding4coconut/pxt-lcd-st7735-128x160_1v0/workflows/MakeCode/badge.svg)
 
