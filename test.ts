@@ -23,7 +23,7 @@ input.onButtonPressed(Button.AB, function () {
     140,
     2,
     Color.White,
-    Color.DarkCyan
+    Color.Blue
     )
 })
 input.onButtonPressed(Button.B, function () {
@@ -34,25 +34,28 @@ input.onButtonPressed(Button.B, function () {
     40,
     Color.Blue
     )
+    RBTFT18.setDisplayInverseMode(true)
+    basic.pause(500)
+    RBTFT18.setDisplayInverseMode(false)
+    RBTFT18.setColorScheme(ColorScheme.BGR)
 })
+
 
 */
 
-
 pins.spiPins(DigitalPin.P3, DigitalPin.C16, DigitalPin.P0)
+RBTFT18.setDisplayOffset(2, 1)
 RBTFT18.init()
 RBTFT18.clearScreen()
 RBTFT18.showString(
 "HAPPY DAY",
-20,
-20,
+0,
+0,
 1,
-Color.Orange,
+Color.Red,
 Color.Black
 )
 basic.showIcon(IconNames.Happy)
-//music.playTone(392, music.beat(BeatFraction.Half))
-
 
 
 basic.forever(function () {

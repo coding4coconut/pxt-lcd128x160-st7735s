@@ -1,1 +1,1 @@
-<xml xmlns="https://developers.google.com/blockly/xml"><block type="device_forever" id="u3e,;o#40[e_pWCx*-C!" x="0" y="0"/></xml>
+<xml xmlns="https://developers.google.com/blockly/xml"><block type="device_forever" id="axk`,-zkjAsX4cVX78##" x="0" y="0"><statement name="HANDLER"><block type="RBTFT18_setColorScheme" id="E{N3]VX5(.3;+b:?HXop"><field name="cScheme">ColorScheme.BGR</field></block></statement></block></xml>

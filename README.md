@@ -159,8 +159,8 @@ The size of the display in vertical direction varies between 160 an 162 pixels -
 
 ```typescript
 // Set Display Size
-// Set the display size to 130 x 160 pixel - horizontal: 130px vertical: 160px
-RBTFT18.setDisplaySize(130, 160)
+// Set the display size to 128 x 160 pixel - horizontal: 128px vertical: 160px  (this is the default setting)
+RBTFT18.setDisplaySize(128, 160)
 ```
 ## Set Pixel-Offset of display
 In case the Display does not start to draw the first pixel at X=0 / Y=0, you can adjust a offset for X and Y direction.
@@ -171,6 +171,10 @@ The offset is statet as number of pixels
 // Set Pixel Offset
 RBTFT18.setDisplayOffset(0, 0)
 ```
+E.g. the 1.8 inch LCD Display from waveshare works fine with a x-offset = 2 and a y-offset = 1. 
+This assumes the Set the display size is set to 128 x 160 pixels.
+
+
 ## Set normal or inverse display mode
 The display facilitates to invert the color of all pixels 
 In order to invert the color of all pixels set the paramenter to "AN" (or "ON")
@@ -181,13 +185,13 @@ In order to set the scheme back to normal set the parameter to "Aus" or ("off").
 RBTFT18.setDisplayInverseMode(ON)
 ```
 
-## Adjust the color scheme
+## Adjust the color scheme (RGB or BGR)
 The ST7735 chip ist able to adjust two color schemes, which meand color ordering - either RGB or BGR
 In case your display shows a blue color instead of a red color, you should make use of this block an change the color sheme to BGR
 
 ```typescript
 // adjust the color ordering of the display to RBG
-RBTFT18.setColorScheme(RBG)
+RBTFT18.setColorScheme(RGB)
 ```
 
 

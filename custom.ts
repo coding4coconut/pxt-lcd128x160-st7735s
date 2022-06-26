@@ -9,7 +9,7 @@
  * Color Scheme of Display
  */
 enum ColorScheme {
-    RBG = 0xC0,  
+    RGB = 0xC0,  
     BGR = 0xC8
 }
 
@@ -65,8 +65,8 @@ namespace RBTFT18 {
     // Display commands & constants
     // width could vary between 128 and 132 - depending on the used LCD-Display (waveshare 1.8 LCD-Module: 130 pixel)
     // width could vary between 160 and 162 - depending on the used LCD-Display (waveshare 1.8 LCD-Module: 160 pixel)
-    let TFTWIDTH = 130
-    let TFTHEIGHT = 162
+    let TFTWIDTH = 128
+    let TFTHEIGHT = 160
 
     let PxlOffsetX = 0
     let PxlOffsetY = 0
@@ -193,10 +193,10 @@ namespace RBTFT18 {
         // set display either to normal display mode or inverse display mode
         // Disable inversion
         if (tftMode){
-            send(TFTCommands.INVOFF, []);
+            send(TFTCommands.INVON, []);
         }
         else {
-            send(TFTCommands.INVON, []);
+            send(TFTCommands.INVOFF, []);
         }
     }
     
@@ -292,7 +292,7 @@ namespace RBTFT18 {
     //% weight=50
     export function setDisplayOffset(x: number, y: number): void {
         PxlOffsetX = x
-        PxlOffsetX = y
+        PxlOffsetY = y
     }
 
     
