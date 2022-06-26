@@ -7,6 +7,14 @@ input.onButtonPressed(Button.A, function () {
     25,
     Color.Yellow
     )
+    RBTFT18.showString(
+    "HELLO TEACHER",
+    10,
+    10,
+    1,
+    Color.Yellow,
+    Color.Black
+    )
 })
 input.onButtonPressed(Button.AB, function () {
     RBTFT18.showString(
@@ -22,7 +30,7 @@ input.onButtonPressed(Button.AB, function () {
     50,
     140,
     2,
-    Color.White,
+    Color.Black,
     Color.Blue
     )
 })
